@@ -40,12 +40,8 @@ chsh -s /usr/local/bin/fish
 # install .dotfiles
 DOTFILES_DIR=$HOME/.dotfiles 
 if ! [ -d $DOTFILES_DIR ]; then
-    git clone --recurse-submodules https://github.com/mattbirman/dotfiles.git $DOTFILES_DIR 
+    git clone --recurse-submodules https://github.com/mattbirman/dotfiles.git $DOTFILES_DIR
+    $DOTFILES_DIR ./setup.sh
 fi
 
-for file in $(ls $DOTFILES_DIR) do
-  ln -sf "$DOTFILES_DIR/$file" "$HOME/.$file"
-  echo "Linking $HOME/.$file"
-done
-
-popd
+popd 
