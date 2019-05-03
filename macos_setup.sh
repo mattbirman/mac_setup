@@ -20,7 +20,7 @@ fi
 brew update-reset
 brew tap
 brew update
-brew install coreutils git python vim fish tmux
+brew install coreutils git python vim fish tmux go goenv rbenv
 
 # install janus vim
 curl -L https://bit.ly/janus-bootstrap | bash
