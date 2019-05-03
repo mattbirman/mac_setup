@@ -4,7 +4,7 @@ pushd /tmp
 
 # download iTerm2
 if ! [ -d "/Applications/iTerm.app" ]; then
-    curl -L -s -o iTerm.zip https://iterm2.com/downloads/stable/latest
+    curl -L -s -o iTerm.zip https://iterm2.com/downloads/stable/iTerm2-3_2_9.zip
     unzip iTerm.zip
     mv iTerm.app /Applications
     
@@ -33,7 +33,6 @@ cd fonts
 ./install.sh
 cd ..
 rm -fr fonts
-
 
 # setup fish
 curl -s -L https://get.oh-my.fish > omf-install.fish
