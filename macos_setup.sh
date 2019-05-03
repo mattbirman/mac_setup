@@ -20,17 +20,27 @@ fi
 brew update-reset
 brew tap
 brew update
-brew install coreutils git python vim fish
+brew install coreutils git python vim fish tmux
 
 # install janus vim
 curl -L https://bit.ly/janus-bootstrap | bash
+
+# install powerline fonts
+PATH="/usr/local/opt/python/libexec/bin:${PATH}" pip install --user powerline-status
+
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts
+./install.sh
+cd ..
+rm -fr fonts
+
 
 # setup fish
 curl -s -L https://get.oh-my.fish > omf-install.fish
 fish omf-install.fish --noninteractive
 rm omf-install.fish
-fish -c omf theme install agnoster
-fish -c omf theme agnoster
+fish -c 'omf install theme agnoster'
+fish -c 'omf theme agnoster'
 grep -sq fish /etc/shells
 if [ $? -eq 1 ]; then
     sudo sh -c "echo /usr/local/bin/fish >> /etc/shells"
@@ -41,7 +51,7 @@ chsh -s /usr/local/bin/fish
 DOTFILES_DIR=$HOME/.dotfiles 
 if ! [ -d $DOTFILES_DIR ]; then
     git clone --recurse-submodules https://github.com/mattbirman/dotfiles.git $DOTFILES_DIR
-    $DOTFILES_DIR ./setup.sh
+    $DOTFILES_DIR/setup.sh
 fi
 
 popd 
