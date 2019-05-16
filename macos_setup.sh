@@ -7,7 +7,7 @@ if ! [ -d "/Applications/iTerm.app" ]; then
     curl -L -s -o iTerm.zip https://iterm2.com/downloads/stable/iTerm2-3_2_9.zip
     unzip iTerm.zip
     mv iTerm.app /Applications
-    
+
     curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
 fi
 
@@ -49,8 +49,11 @@ chsh -s /usr/local/bin/fish
 # install .dotfiles
 DOTFILES_DIR=$HOME/.dotfiles 
 if ! [ -d $DOTFILES_DIR ]; then
+    mv $DOTFILES_DIR $HOME/.dotfiles_bak
     git clone --recurse-submodules https://github.com/mattbirman/dotfiles.git $DOTFILES_DIR
     $DOTFILES_DIR/setup.sh
 fi
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
 
 popd 
