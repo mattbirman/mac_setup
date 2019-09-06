@@ -20,7 +20,15 @@ fi
 brew update-reset
 brew tap
 brew update
-brew install coreutils git python vim fish tmux go goenv rbenv
+brew install coreutils git python vim fish tmux go goenv rbenv ag
+brew cask install alfred dozer
+
+# install emacs
+brew tap d12frosted/emacs-plus
+brew install emacs-plus
+brew linkapps emacs-plus
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+stack install apply-refact hlint stylish-haskell hasktags hoogle
 
 # install janus vim
 curl -L https://bit.ly/janus-bootstrap | bash
