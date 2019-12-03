@@ -4,13 +4,13 @@ pushd /tmp
 
 # download iTerm2
 if ! [ -d "/Applications/iTerm.app" ]; then
-    curl -L -s -o iTerm.zip https://iterm2.com/downloads/stable/iTerm2-3_2_9.zip
+    curl -L -s -o iTerm.zip https://iterm2.com/downloads/stable/iTerm2-3_3_6.zip
     unzip iTerm.zip
     mv iTerm.app /Applications
 
     curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
 fi
-
+!=
 # install brew
 which brew > /dev/null
 if [ $? -eq 1 ]; then
@@ -21,12 +21,15 @@ brew update-reset
 brew tap
 brew update
 brew install coreutils git python vim fish tmux go goenv rbenv ag
-brew cask install alfred dozer
+brew cask install alfred dozer 1password
 
 # install emacs
 brew tap d12frosted/emacs-plus
 brew install emacs-plus
 brew linkapps emacs-plus
+brew tap AdoptOpenJDK/openjdk
+brew cask install adoptopenjdk8
+brew install sbt
 #brew cask install emacs
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 stack install apply-refact hlint stylish-haskell hasktags hoogle
@@ -49,6 +52,8 @@ fish omf-install.fish --noninteractive
 rm omf-install.fish
 fish -c 'omf install theme agnoster'
 fish -c 'omf theme agnoster'
+fish -c 'omf install bass'
+
 grep -sq fish /etc/shells
 if [ $? -eq 1 ]; then
     sudo sh -c "echo /usr/local/bin/fish >> /etc/shells"
@@ -56,13 +61,14 @@ fi
 chsh -s /usr/local/bin/fish
 
 # install .dotfiles
-DOTFILES_DIR=$HOME/.dotfiles 
-if ! [ -d $DOTFILES_DIR ]; then
-    mv $DOTFILES_DIR $HOME/.dotfiles_bak
-    git clone --recurse-submodules https://github.com/mattbirman/dotfiles.git $DOTFILES_DIR
-    $DOTFILES_DIR/setup.sh
-fi
+git clone https://github.com/mattbirman/dotfiles
+./dotfiles/setup.sh
 
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-popd 
+// set mac defaults
+sudo defaults write bluetoothaudiod "Enable AAC codec" -bool true
+mkdir ~/Pictures/Screenshots
+defaults write com.apple.screencapture location ~/Pictures/Screenshots
+// scroll speed, sidebar icon size, key repeat rate
+popd
