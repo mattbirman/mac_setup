@@ -10,7 +10,7 @@ if ! [ -d "/Applications/iTerm.app" ]; then
 
     curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
 fi
-!=
+
 # install brew
 which brew > /dev/null
 if [ $? -eq 1 ]; then
@@ -23,19 +23,11 @@ brew update
 brew install coreutils git python vim fish tmux go goenv rbenv ag bat
 brew cask install alfred dozer 1password fluor
 
-# install emacs
-# brew cask install emacs
-
 brew tap AdoptOpenJDK/openjdk
 brew cask install adoptopenjdk8
 brew install sbt
 
-#brew cask install emacs
-git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 stack install apply-refact hlint stylish-haskell hasktags hoogle
-
-# install janus vim
-curl -L https://bit.ly/janus-bootstrap | bash
 
 # install powerline fonts
 PATH="/usr/local/opt/python/libexec/bin:${PATH}" pip install --user powerline-status
