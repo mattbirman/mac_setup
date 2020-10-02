@@ -20,10 +20,8 @@ fi
 brew update-reset
 brew tap
 brew update
-brew install coreutils git python vim fish tmux ag bat
-brew cask install alfred dozer 1password fluor
-
-stack install apply-refact hlint stylish-haskell hasktags hoogle
+brew install coreutils git python vim fish tmux ag bat emacs-plus
+brew cask install alfred dozer 1password fluor firefox slack
 
 # install powerline fonts
 PATH="/usr/local/opt/python/libexec/bin:${PATH}" pip install --user powerline-status
@@ -64,9 +62,3 @@ popd
 // install vim config
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
-
-// Zendesk
-brew tap AdoptOpenJDK/openjdk
-brew cask install adoptopenjdk8
-brew install sbt
-
